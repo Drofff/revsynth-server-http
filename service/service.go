@@ -9,14 +9,14 @@ import (
 )
 
 type AlgorithmConfig struct {
-	NumOfAnts              int     `json:"num_of_ants"`
-	NumOfIterations        int     `json:"num_of_iterations"`
+	NumOfAnts              int     `json:"numOfAnts"`
+	NumOfIterations        int     `json:"numOfIterations"`
 	Alpha                  float32 `json:"alpha"`
 	Beta                   float32 `json:"beta"`
-	EvaporationRate        float32 `json:"evaporation_rate"`
-	LocalLoops             int     `json:"local_loops"`
-	SearchDepth            int     `json:"search_depth"`
-	DisableNegativeControl bool    `json:"disable_negative_control"`
+	EvaporationRate        float32 `json:"evaporationRate"`
+	LocalLoops             int     `json:"localLoops"`
+	SearchDepth            int     `json:"searchDepth"`
+	DisableNegativeControl bool    `json:"disableNegativeControl"`
 }
 
 type TruthTable struct {
@@ -31,12 +31,12 @@ type SynthesiseInput struct {
 
 type Gate struct {
 	TypeName    string `json:"type"`
-	ControlBits []int  `json:"control_bits"`
-	TargetBits  []int  `json:"target_bits"`
+	ControlBits []int  `json:"controlBits"`
+	TargetBits  []int  `json:"targetBits"`
 }
 
 type SynthesiseOutput struct {
-	ErrorsCount int    `json:"errors_count"`
+	ErrorsCount int    `json:"errorsCount"`
 	Cost        int    `json:"cost"`
 	Gates       []Gate `json:"gates"`
 }

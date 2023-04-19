@@ -1,12 +1,12 @@
 {
   "config": {
-    "num_of_ants": 20,
-    "num_of_iterations": 30,
+    "numOfAnts": 20,
+    "numOfIterations": 30,
     "alpha": 2.0,
     "beta": 1.5,
-    "evaporation_rate": 0.3,
-    "local_loops": 4,
-    "search_depth": 6
+    "evaporationRate": 0.3,
+    "localLoops": 4,
+    "searchDepth": 6
   },
   "target": {
     "inputs": [

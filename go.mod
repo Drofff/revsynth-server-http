@@ -2,4 +2,4 @@ module github.com/Drofff/revsynth-server-http
 
 go 1.20
 
-require github.com/Drofff/revsynth v0.0.1 // indirect
+require github.com/Drofff/revsynth v0.0.2

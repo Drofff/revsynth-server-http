@@ -9,13 +9,14 @@ import (
 )
 
 type AlgorithmConfig struct {
-	NumOfAnts       int     `json:"num_of_ants"`
-	NumOfIterations int     `json:"num_of_iterations"`
-	Alpha           float32 `json:"alpha"`
-	Beta            float32 `json:"beta"`
-	EvaporationRate float32 `json:"evaporation_rate"`
-	LocalLoops      int     `json:"local_loops"`
-	SearchDepth     int     `json:"search_depth"`
+	NumOfAnts              int     `json:"num_of_ants"`
+	NumOfIterations        int     `json:"num_of_iterations"`
+	Alpha                  float32 `json:"alpha"`
+	Beta                   float32 `json:"beta"`
+	EvaporationRate        float32 `json:"evaporation_rate"`
+	LocalLoops             int     `json:"local_loops"`
+	SearchDepth            int     `json:"search_depth"`
+	DisableNegativeControl bool    `json:"disable_negative_control"`
 }
 
 type TruthTable struct {
@@ -46,15 +47,21 @@ const (
 )
 
 func toAcoConfig(ac AlgorithmConfig) aco.Config {
+	allowedCV := circuit.ControlBitValues
+	if ac.DisableNegativeControl {
+		allowedCV = []int{circuit.ControlBitIgnore, circuit.ControlBitPositive}
+	}
+
 	return aco.Config{
-		NumOfAnts:       ac.NumOfAnts,
-		NumOfIterations: ac.NumOfIterations,
-		Alpha:           float64(ac.Alpha),
-		Beta:            float64(ac.Beta),
-		EvaporationRate: float64(ac.EvaporationRate),
-		DepositStrength: acoDepositStrength,
-		LocalLoops:      ac.LocalLoops,
-		SearchDepth:     ac.SearchDepth,
+		NumOfAnts:               ac.NumOfAnts,
+		NumOfIterations:         ac.NumOfIterations,
+		Alpha:                   float64(ac.Alpha),
+		Beta:                    float64(ac.Beta),
+		EvaporationRate:         float64(ac.EvaporationRate),
+		DepositStrength:         acoDepositStrength,
+		LocalLoops:              ac.LocalLoops,
+		SearchDepth:             ac.SearchDepth,
+		AllowedControlBitValues: allowedCV,
 	}
 }
 

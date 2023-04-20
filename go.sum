@@ -1,5 +1,5 @@
-github.com/Drofff/revsynth v0.0.2 h1:gQVAG5tfAvtT8HehrYdWNOSnWyQrNHPgDYIHgj4Su+g=
-github.com/Drofff/revsynth v0.0.2/go.mod h1:5WNSfRbLvm6GffFin4NO06a1uFQjcE+snUgH4TnEzRk=
+github.com/Drofff/revsynth v0.0.3 h1:TX1+44ypyKdELxLmZbPI+vTwudBZ3mYj0eVR5QtqeXs=
+github.com/Drofff/revsynth v0.0.3/go.mod h1:5WNSfRbLvm6GffFin4NO06a1uFQjcE+snUgH4TnEzRk=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/stretchr/testify v1.8.2 h1:+h33VjcLVPDHtOdpUCuF+7gSuG3yGIftsP1YvFihtJ8=

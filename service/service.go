@@ -17,6 +17,7 @@ type AlgorithmConfig struct {
 	LocalLoops             int     `json:"localLoops"`
 	SearchDepth            int     `json:"searchDepth"`
 	DisableNegativeControl bool    `json:"disableNegativeControl"`
+	BaseGate               string  `json:"baseGate"`
 }
 
 type TruthTable struct {
@@ -43,7 +44,9 @@ type SynthesiseOutput struct {
 
 const (
 	acoDepositStrength = 100
-	gateTypeToffoli    = "toffoli"
+
+	baseGateToffoli     = "toffoli"
+	baseGateFredkinCnot = "fredkin+cnot"
 )
 
 func toAcoConfig(ac AlgorithmConfig) aco.Config {
@@ -65,6 +68,17 @@ func toAcoConfig(ac AlgorithmConfig) aco.Config {
 	}
 }
 
+func resolveBaseGate(baseGate string) ([]circuit.GateFactory, error) {
+	switch baseGate {
+	case baseGateToffoli:
+		return []circuit.GateFactory{circuit.NewToffoliGateFactory()}, nil
+	case baseGateFredkinCnot:
+		return []circuit.GateFactory{circuit.NewFredkinGateFactory(), circuit.NewCnotGateFactory()}, nil
+	default:
+		return nil, fmt.Errorf("unknown base gate %v", baseGate)
+	}
+}
+
 func toTruthVector(target TruthTable) circuit.TruthVector {
 	tt := circuit.TruthTable{}
 	for ri := 0; ri < len(target.Inputs); ri++ {
@@ -79,7 +93,7 @@ func toSynthesisOutput(res aco.SynthesisResult) *SynthesiseOutput {
 	for i := len(res.Gates) - 1; i >= 0; i-- {
 		resGate := res.Gates[i]
 		gates = append(gates, Gate{
-			TypeName:    gateTypeToffoli,
+			TypeName:    resGate.TypeName(),
 			TargetBits:  resGate.TargetBits(),
 			ControlBits: resGate.ControlBits(),
 		})
@@ -90,7 +104,12 @@ func toSynthesisOutput(res aco.SynthesisResult) *SynthesiseOutput {
 
 func Synthesise(in *SynthesiseInput) (*SynthesiseOutput, error) {
 	conf := toAcoConfig(in.Config)
-	synth := aco.NewSynthesizer(conf, circuit.NewToffoliGateFactory(), logging.NewLogger(logging.LevelInfo))
+	gateFactories, err := resolveBaseGate(in.Config.BaseGate)
+	if err != nil {
+		return nil, err
+	}
+
+	synth := aco.NewSynthesizer(conf, gateFactories, logging.NewLogger(logging.LevelInfo))
 	res := synth.Synthesise(toTruthVector(in.Target))
 
 	if len(res.Gates) == 0 {

@@ -47,6 +47,7 @@ const (
 
 	baseGateToffoli     = "toffoli"
 	baseGateFredkinCnot = "fredkin+cnot"
+	baseGateFredkinNot  = "fredkin+not"
 )
 
 func toAcoConfig(ac AlgorithmConfig) aco.Config {
@@ -74,6 +75,8 @@ func resolveBaseGate(baseGate string) ([]circuit.GateFactory, error) {
 		return []circuit.GateFactory{circuit.NewToffoliGateFactory()}, nil
 	case baseGateFredkinCnot:
 		return []circuit.GateFactory{circuit.NewFredkinGateFactory(), circuit.NewCnotGateFactory()}, nil
+	case baseGateFredkinNot:
+		return []circuit.GateFactory{circuit.NewFredkinGateFactory(), circuit.NewNotGateFactory()}, nil
 	default:
 		return nil, fmt.Errorf("unknown base gate %v", baseGate)
 	}

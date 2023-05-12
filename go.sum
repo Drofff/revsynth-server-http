@@ -1,6 +1,10 @@
 github.com/Drofff/revsynth v0.1.1 h1:Ry78YbyzQ1Z3aepsQW4DbZgAvZFM6QtkPZPb7AbwsFM=
 github.com/Drofff/revsynth v0.1.1/go.mod h1:5WNSfRbLvm6GffFin4NO06a1uFQjcE+snUgH4TnEzRk=
+github.com/Drofff/revsynth v0.2.1 h1:XmEFey6pPgp/4BM13xKpIKVogmR4kGGp4HTwm1xrddQ=
+github.com/Drofff/revsynth v0.2.1/go.mod h1:dDZwNuru8chP6Gz9RJClL38584ldylcRyMoFQeXvQsA=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/dominikbraun/graph v0.20.0 h1:a/ReB8JqcIhpo9yx31V1W+OwRnak4lo7QFsj17kpe6c=
+github.com/dominikbraun/graph v0.20.0/go.mod h1:yOjYyogZLY1LSG9E33JWZJiq5k83Qy2C6POAuiViluc=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/stretchr/testify v1.8.2 h1:+h33VjcLVPDHtOdpUCuF+7gSuG3yGIftsP1YvFihtJ8=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
